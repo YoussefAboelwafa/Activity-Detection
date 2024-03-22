@@ -1,4 +1,4 @@
 # Activity-Detection
 
 ## Dataset
-Daily & Sports Activity [Dataset](https://archive.ics.uci.edu/dataset/256/daily+and+sports+activities)
+Daily & Sports Activity [Dataset](https://www.kaggle.com/datasets/obirgul/daily-and-sports-activities/data)
