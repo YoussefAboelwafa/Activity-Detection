@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 paths = []
 range_of_a = [str(i).zfill(2) for i in np.arange(1, 20, 1)]
@@ -40,6 +41,10 @@ def method_1():
             X_test[test_index] = np.mean(data.values, axis=0)
             y_test[test_index] = labels[i]
             test_index += 1
+
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
     return X_train, X_test, y_train, y_test
 
 
@@ -61,6 +66,10 @@ def method_2():
             X_test[test_index] = data.values.flatten()
             y_test[test_index] = labels[i]
             test_index += 1
+
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
     pca = PCA(n_components=0.95)
     X_train = pca.fit_transform(X_train)
     X_test = pca.transform(X_test)
