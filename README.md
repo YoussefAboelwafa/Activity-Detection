@@ -1,4 +1,5 @@
 # Activity Detection
+Activity Detection using Unsupervised Learning Algorithms: **DBSCAN**, **K-Means** & **Spectral Clustering**
 
 ## Dataset
 Daily & Sports Activity [Dataset](https://www.kaggle.com/datasets/obirgul/daily-and-sports-activities/data)
