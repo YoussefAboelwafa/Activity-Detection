@@ -27,8 +27,8 @@ def method_1():
     no_rows = len(paths)
     X_train = np.zeros((19 * 8 * 48, 45))
     X_test = np.zeros((19 * 8 * 12, 45))
-    y_train = np.zeros((19 * 8 * 48, 1))
-    y_test = np.zeros((19 * 8 * 12, 1))
+    y_train = np.zeros(19 * 8 * 48)
+    y_test = np.zeros(19 * 8 * 12)
     test_index = 0
     train_index = 0
     for i in range(no_rows):
@@ -45,15 +45,15 @@ def method_1():
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
-    return X_train, X_test, y_train, y_test
+    return X_train, y_train, X_test, y_test
 
 
 def method_2():
     no_rows = len(paths)
     X_train = np.zeros((19 * 8 * 48, 125 * 45))
     X_test = np.zeros((19 * 8 * 12, 125 * 45))
-    y_train = np.zeros((19 * 8 * 48, 1))
-    y_test = np.zeros((19 * 8 * 12, 1))
+    y_train = np.zeros(19 * 8 * 48)
+    y_test = np.zeros(19 * 8 * 12)
     test_index = 0
     train_index = 0
     for i in range(no_rows):
@@ -70,7 +70,8 @@ def method_2():
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
+    
     pca = PCA(n_components=0.95)
     X_train = pca.fit_transform(X_train)
     X_test = pca.transform(X_test)
-    return X_train, X_test, y_train, y_test
+    return X_train, y_train, X_test, y_test
