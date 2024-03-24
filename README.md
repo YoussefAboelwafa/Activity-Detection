@@ -53,8 +53,8 @@ In each subfolder, there are 60 text files s01, s02, …, s60, one for each segm
 
 **Pros:**
 - DBSCAN can find arbitrarily shaped clusters
-- DBSCAN has a notion of noise & is robust to outliers
-- DBSCAN does not require the user to specify the number of clusters
+- DBSCAN has a notion of **noise** & is robust to **outliers**
+- DBSCAN does not require the user to specify the **number of clusters**
 
 **Cons:**
 - DBSCAN can be sensitive to the settings of `eps` and `min_samples`
@@ -62,30 +62,14 @@ In each subfolder, there are 60 text files s01, s02, …, s60, one for each segm
 - DBSCAN does not work well with high-dimensional data
 <hr>
 
-#### DBSCAN Algorithm:
-This code is an implementation of the DBSCAN (Density-Based Spatial Clustering of Applications with Noise) clustering algorithm. Here's a step-by-step explanation:
+#### Difference between KMeans and DBSCAN:
 
-1. **Initialize labels**: The `labels` array is initialized with zeros. This array will hold the cluster assignments for each point in the dataset `X`. A label of `0` means the point has not been assigned to a cluster yet.
+![0 FusOrF2huus2K400](https://github.com/YoussefAboelwafa/Activity-Detection/assets/96186143/f8dd3f1b-643c-4c36-b60b-0e92a89c5e00)
 
-2. **Initialize cluster counter**: `C` is a counter for the current cluster. It starts at `0` and is incremented each time a new cluster is created.
+<hr>
 
-3. **Loop over points**: The main loop iterates over each point in the dataset.
+### DBSCAN Pseudocode:
 
-4. **Skip labeled points**: If a point has already been assigned to a cluster (i.e., its label is not `0`), it is skipped.
-
-5. **Find neighbors**: For each point, it finds the indices of the points in `X` that are within a distance `eps` from the current point. These points are considered the current point's neighbors.
-
-6. **Mark as noise**: If a point has fewer than `min_samples` neighbors, it is considered noise and is assigned a label of `-1`.
-
-7. **Create new cluster**: If a point has at least `min_samples` neighbors, a new cluster is created. The cluster counter `C` is incremented, and the current point is assigned to the new cluster.
-
-8. **Expand cluster**: The algorithm then attempts to expand the cluster by iterating over the current point's neighbors. If a neighbor is noise, it is reassigned to the current cluster. If a neighbor is unlabeled, it is assigned to the current cluster, and its own neighbors are added to the set of points to be visited. This process continues until no more points can be added to the cluster.
-
-9. **Return labels**: Finally, the function returns the `labels` array, which holds the final cluster assignments for each point in the dataset.
-
-This implementation of DBSCAN treats noise points (outliers) as their own separate cluster, which is a common approach in density-based clustering.
-
-#### Pseudocode:
 ```python
 def get_DBSCAN(X, min_samples, eps)
     Initialize labels[] = 0 for each point in X
@@ -123,7 +107,20 @@ def get_DBSCAN(X, min_samples, eps)
     return labels
 
 ```
-#### Difference between KMeans and DBSCAN:
+<hr>
 
+## K-Means
+
+<hr>
+
+### K-Means Pseudocode:
+
+<hr>
+
+## Spectral-Clustering
+
+<hr>
+
+### Spectral-Clustering Pseudocode:
 
 <hr>
