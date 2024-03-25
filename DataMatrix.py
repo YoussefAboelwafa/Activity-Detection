@@ -40,9 +40,9 @@ def method_1():
             X_test[test_index] = np.mean(data.values, axis=0)
             y_test[test_index] = labels[i]
             test_index += 1
-    # scaler = StandardScaler()
-    # X_train = scaler.fit_transform(X_train)
-    # X_test = scaler.transform(X_test)
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
     return X_train, y_train, X_test, y_test
 
 
