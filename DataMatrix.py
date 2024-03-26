@@ -26,8 +26,8 @@ def method_1():
     no_rows = len(paths)
     X_train = np.zeros((19 * 8 * 48, 45))
     X_test = np.zeros((19 * 8 * 12, 45))
-    y_train = np.zeros((19 * 8 * 48, 1))
-    y_test = np.zeros((19 * 8 * 12, 1))
+    y_train = np.zeros(19 * 8 * 48)
+    y_test = np.zeros(19 * 8 * 12)
     test_index = 0
     train_index = 0
     for i in range(no_rows):
@@ -40,6 +40,7 @@ def method_1():
             X_test[test_index] = np.mean(data.values, axis=0)
             y_test[test_index] = labels[i]
             test_index += 1
+
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
@@ -50,8 +51,8 @@ def method_2():
     no_rows = len(paths)
     X_train = np.zeros((19 * 8 * 48, 125 * 45))
     X_test = np.zeros((19 * 8 * 12, 125 * 45))
-    y_train = np.zeros((19 * 8 * 48, 1))
-    y_test = np.zeros((19 * 8 * 12, 1))
+    y_train = np.zeros(19 * 8 * 48)
+    y_test = np.zeros(19 * 8 * 12)
     test_index = 0
     train_index = 0
     for i in range(no_rows):
