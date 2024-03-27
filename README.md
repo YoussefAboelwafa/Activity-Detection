@@ -121,6 +121,25 @@ min_samples is the minimum number of points that must be within the eps radius o
 
 ![alt text](<Plots/min_samples.png>)
 
+#### Training set Evaluation:
+
+<table >
+<tr>
+    <td><strong>Metrics<strong></td>
+    <td><strong>Precision<strong></td>
+    <td><strong>Recall<strong></td>
+    <td><strong>F Score<strong></td>
+    <td><strong>Condititional Entropy<strong></td>
+  </tr>
+  <tr>
+  <td><strong>DBSCAN<strong></td>
+    <td>92.15%</td>
+    <td>71.00%</td>
+    <td>76.62%</td>
+    <td>0.988</td>
+  </tr>
+</table>
+
 <hr>
 
 ## K-means
@@ -283,7 +302,6 @@ def spectral_clustering_analysis(X_train, n_clusters=19):
                     
     return labels
 ```
-<hr>
 
 ### Comaprison between the two methods of dataloading
 ![alt text](Plots/spectral_methods.png)
@@ -343,10 +361,10 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
   </tr>
   <tr>
   <td><strong>DBSCAN<strong></td>
-    <td>92.15%</td>
-    <td>71.00%</td>
-    <td>76.62%</td>
-    <td>0.988</td>
+    <td>85.09%</td>
+    <td>51.53%</td>
+    <td>55.735%</td>
+    <td>1.619</td>
   </tr>
   <tr>
     <td><strong>Spectral Clustering<strong></td>
@@ -364,19 +382,19 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
   </tr>
 </table>
 
-- **Precision:** <br> DBSCAN has the highest precision, indicating that the clusters are more pure compared to Spectral Clustering and K-means. <br>
+- **Precision:** <br> 
 ![alt text](Plots/precision.png)
 <hr>
 
-- **Recall:** <br> K-means has the highest recall, indicating that it is better at finding all the relevant instances compared to DBSCAN and Spectral Clustering.<br>
+- **Recall:** <br> 
 ![alt text](Plots/recall.png)
 <hr>
 
-- **F-measure:** <br> DBSCAN has the highest F-measure, indicating a good balance between precision and recall. <br>
+- **F-measure:** <br> 
 ![alt text](Plots/f1.png)
 <hr>
 
-- **Conditional Entropy:** <br> DBSCAN has the lowest conditional entropy, indicating that it requires the least amount of information to describe the clustering result given the true labels. <br>
+- **Conditional Entropy:** <br> 
 ![alt text](Plots/entropy.png)
 <hr>
 
@@ -392,10 +410,10 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
   </tr>
   <tr>
   <td><strong>DBSCAN<strong></td>
-    <td>26.316%</td>
-    <td>20.888%</td>
-    <td>21.914%</td>
-    <td>3.144</td>
+    <td>21.053%</td>
+    <td>20.230%</td>
+    <td>20.633%</td>
+    <td>3.167</td>
   </tr>
   <tr>
     <td><strong>Spectral Clustering<strong></td>
