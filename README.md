@@ -113,13 +113,30 @@ def get_DBSCAN(X, min_samples, eps)
 
 - Hyperparameter Tuning For **epsilon**: <br>
 eps is the circle radius that will be used to determine the neighborhood of a point. It is important to choose the right value for eps, as it will affect the clustering results. A small value of eps will result in many points being labeled as noise, while a large value of eps will result in all points being labeled as part of the same cluster. 
-  
-![alt text](<Plots/eps.png>)
 
 - Hyperparameter Tuning For **min_samples**: <br>
 min_samples is the minimum number of points that must be within the eps radius of a point for it to be considered a core point. Increasing the value of min_samples will result in fewer core points and more noise points, while decreasing the value of min_samples will result in more core points and fewer noise points.
 
-![alt text](<Plots/min_samples.png>)
+```python
+results = []
+
+# Map the labels
+n_samples = np.arange(2, 11, 1)
+eps = np.arange(0.1, 4, 0.1)
+
+for sample in n_samples:
+for e in eps:
+y_pred = get_DBSCAN(X1, sample, e)
+y_pred_mapped = map_labels(y1, y_pred)
+
+# Compute the accuracy
+precision = precision_score(y1, y_pred_mapped, average="weighted")
+recall = recall_score(y1, y_pred_mapped, average="weighted")
+f1 = f1_score(y1, y_pred_mapped, average="weighted")
+
+# Append the results to the list
+results.append([sample, e, precision, recall, f1])
+  ```
 
 #### Training set Evaluation:
 
