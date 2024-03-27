@@ -352,7 +352,21 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
   </tr>
 </table>
 
+- **Precision:** <br> DBSCAN has the highest precision, indicating that the clusters are more pure compared to Spectral Clustering and K-means.
+![alt text](Plots/precision.png)
+<hr>
 
+- **Recall:** <br> K-means has the highest recall, indicating that it is better at finding all the relevant instances compared to DBSCAN and Spectral Clustering.
+![alt text](Plots/recall.png)
+<hr>
+
+- **F-measure:** <br> DBSCAN has the highest F-measure, indicating a good balance between precision and recall.
+![alt text](Plots/f1.png)
+<hr>
+
+- **Conditional Entropy:** <br> DBSCAN has the lowest conditional entropy, indicating that it requires the least amount of information to describe the clustering result given the true labels.
+![alt text](Plots/entropy.png)
+<hr>
 
 ### Second Solution
 
