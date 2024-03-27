@@ -111,12 +111,12 @@ def get_DBSCAN(X, min_samples, eps)
 
 ### Hyperparameter Tuning:
 
-- Hyperparameter Tuning For epsilon: <br>
+- Hyperparameter Tuning For **epsilon**: <br>
 eps is the circle radius that will be used to determine the neighborhood of a point. It is important to choose the right value for eps, as it will affect the clustering results. A small value of eps will result in many points being labeled as noise, while a large value of eps will result in all points being labeled as part of the same cluster. 
   
 ![alt text](<Plots/eps.png>)
 
-- Hyperparameter Tuning For min_samples: <br>
+- Hyperparameter Tuning For **min_samples**: <br>
 min_samples is the minimum number of points that must be within the eps radius of a point for it to be considered a core point. Increasing the value of min_samples will result in fewer core points and more noise points, while decreasing the value of min_samples will result in more core points and fewer noise points.
 
 ![alt text](<Plots/min_samples.png>)
