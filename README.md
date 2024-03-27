@@ -109,10 +109,10 @@ def get_DBSCAN(X, min_samples, eps)
 ```
 <hr>
 
-# K-means
+## K-means
  K-means is a popular unsupervised machine learning algorithm used for clustering data into groups, often referred to as "clusters". The algorithm aims to partition the data points into a predefined number of clusters (k), where each data point belongs to the cluster with the nearest mean (centroid). It works iteratively by initially randomly selecting k centroids, assigning each data point to the nearest centroid, recalculating the centroids based on the mean of the points assigned to each cluster, and repeating these steps until convergence or a predefined number of iterations. K-means seeks to minimize the within-cluster sum of squares.
 
-## K-means Pseudocode
+### K-means Pseudocode
 ```python
 def kmeans(k, current_centroids, train_set):
     for _ in range(1000): 
@@ -129,7 +129,7 @@ def kmeans(k, current_centroids, train_set):
 ```
 Note that I used in my implementation the **max number of iterations = 1000**
 
-## Random Starts
+### Random Starts
 - Since K-means depends on the initial choice of centroids so we don't know the centroids which gives us the best result.
 - Here comes the technique of random starts, where K-means algorithm is executed **20** times and the best run which gives us the lowest **WCSS** (Within Cluster Sum Squared) from the 20 runs.
 
@@ -154,10 +154,10 @@ def BestRandomStart(train_set,k):
             Best_centroids=centroids
     return Best_labels,Best_centroids            
 ```
-## Hyper Parameter Tuning
+### Hyper Parameter Tuning
 K-means has a hyper parameter which is (K) number of clusters.<br>
 How to choose the Best K ?
-### 1. Elbow Method
+#### 1. Elbow Method
 The Elbow Method is a heuristic technique used to determine the optimal number of clusters (k) in a k-means clustering algorithm. It involves plotting the within-cluster sum of squares (WCSS) against the number of clusters. 
 
 When the number of clusters is increased, the WCSS typically decreases, as the clusters become more specific to the data points. However, beyond a certain point, adding more clusters does not lead to significant reductions in the WCSS, resulting in diminishing returns.
@@ -170,7 +170,7 @@ The Elbow Method suggests selecting the number of clusters at the "elbow" point 
 
 - Sometimes the plot doesn't have an obivious elbow point as it is in the two plots above. <br>
 - Is there a better method?
-### 2. Silhouette Method
+#### 2. Silhouette Method
 The Silhouette score is a very useful method to find the number of K when the elbow method doesn’t show the elbow point.
 
 The value of the Silhouette score ranges from -1 to 1. Following is the interpretation of the Silhouette score.
@@ -200,29 +200,112 @@ k = 19 is better because every cluster silhouette score is above average and clu
 <hr>
 
 ## Spectral-Clustering
+### Overview
+Spectral Clustering is a powerful technique for clustering data points based on their similarity. It leverages the eigenvalues and eigenvectors of a similarity or affinity matrix to perform dimensionality reduction and then applies a standard clustering algorithm (e.g., K-means) to the reduced space.
+
+### Algorithm
+Algorithm
+Spectral Clustering Algorithm can be summarized as follows:
+
+- Compute Similarity Matrix: Construct a similarity matrix based on the pairwise similarities between data points. Common choices include the Gaussian kernel, Cosine similarity, or k-nearest neighbors.
+
+- Compute Graph Laplacian: Compute the Laplacian matrix from the similarity matrix. There are different variants of the Laplacian matrix, such as the unnormalized, normalized, or symmetric normalized Laplacian.
+
+- Compute Eigenvalues and Eigenvectors: Calculate the eigenvalues and eigenvectors of the Laplacian matrix.
+
+- Dimensionality Reduction: Select the top k eigenvectors corresponding to the smallest eigenvalues to form a lower-dimensional representation of the data.
+
+- Clustering: Apply a standard clustering algorithm (e.g., K-means) to the reduced space formed by the selected eigenvectors.
 
 <hr>
+
+
 
 ### Spectral-Clustering Pseudocode:
-
+```python
+def spectral_clustering(X, n_clusters=19,sim='ecu' ,laplacian='a',n_neighbours=10,sigma=0.1):
+    if sim == "ecu":
+        W = similarity_matrix(X, sigma)
+    elif sim == "cos":
+        W = consine_similarity_matrix(X)
+    else:
+        W = knn_similarity_matrix(X,n_neighbors=n_neighbours)
+    if laplacian == 'a':
+        L = laplacian_a_matrix(W)
+    else:
+        L = normalized_laplacian(W)
+    eigenvalues, eigenvectors = np.linalg.eig(L)
+    idx = eigenvalues.argsort()  
+    eigenvalues = eigenvalues[idx]
+    eigenvectors = eigenvectors[:, idx]
+    eigenvectors = np.real(eigenvectors)
+    norm_eigenvectors = normalize(eigenvectors[:, :n_clusters], norm='l2', axis=1)
+    kmeans = KMeans(n_clusters=n_clusters, random_state=0).fit(norm_eigenvectors)
+    return kmeans.labels_
+```
 <hr>
 
-## Evaluation
-**Then we will use the following metrics to evaluate our cluserting:**
-### 1. Precision
-In the context of k-means clustering, precision indicates how **pure** each cluster is, with higher precision values indicating that the clusters contain predominantly similar data points.<br>
-Precision(Ci​)=Total number of data points assigned to cluster Ci​Number of data points correctly assigned to cluster Ci​​
-### 2. Recall
+### HyperParameters tuning
 
-### 3. F Score
+Hyperparameters such as the choice of similarity measure, Laplacian matrix type, number of nearest neighbors, and sigma are tuned to optimize clustering performance. The notebook includes an analysis of spectral clustering with different hyperparameters and visualization of metrics to determine the best configuration.
+
+```python 
+def spectral_clustering_analysis(X_train, n_clusters=19):
+    labels={}
+    sim = ["ecu", "cos", "knn"]
+    laplacian = ["a", "l"]
+    n_neighbours = [15,20,50,75,80,90,100,150]
+    sigma = [0.01,0.1, 0.5, 1]
+    for s in sim:
+        for l in laplacian:
+            if s == "knn":
+                for n in n_neighbours:
+                    kmean = spectral_clustering(X_train, n_clusters=n_clusters, sim=s, laplacian=l, n_neighbours=n)
+                    labels[s+"_"+l+"_"+str(n)] = kmean.labels_
+            else:
+                for sig in sigma:
+                    kmean = spectral_clustering(X_train, n_clusters=n_clusters, sim=s, laplacian=l, sigma=sig)
+                    labels[s+"_"+l+"_"+str(sig)] = kmean.labels_
+                    
+    return labels
+```
+
+### Comaprison between the two methods of dataloading
+![alt text](./comparision/spectral_methods.png)
+
+
+## Evaluation Metrics
+**Then we will use the following metrics to evaluate our cluserting:**
+
+### 1. Precision
+Precision indicates how **pure** each cluster is, with higher precision values indicating that the clusters contain predominantly similar data points.
+
+$$ \text{Precision}(C_i) = \frac{\text{Total number of data points assigned to cluster } C_i}{\text{Number of data points correctly assigned to cluster } C_i} $$
+
+### 2. Recall
+Recall measures the ability of the clustering algorithm to find all the relevant instances.
+
+$$ \text{Recall}(C_i) = \frac{\text{Number of data points correctly assigned to cluster } C_i}{\text{Total number of data points in cluster } C_i} \$$
+
+### 3. F-measure
+F-measure is the harmonic mean of precision and recall, providing a single metric for evaluating clustering performance.
+
+$$\text{F-measure} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} \$$
 
 ### 4. Conditional Entropy
+Conditional Entropy measures the amount of information required to describe the clustering result given the true labels.
+
+$$ H(Y|X) = - \sum_{x \in X} \sum_{y \in Y} p(x, y) \log \frac{p(x, y)}{p(x)} \$$
+
+Here, \( X \) represents the true labels, and \( Y \) represents the clustering result. \( p(x, y) \) is the joint probability distribution of \( X \) and \( Y \), and \( p(x) \) is the marginal probability distribution of \( X \).
 
 
-<!DOCTYPE html>
-<html>
 
-<body>
+
+
+## Comparision between DBSCAN, Spectral clustring, and Kmeans
+
+### First Solution
 
 <table >
 <tr>
@@ -241,10 +324,10 @@ Precision(Ci​)=Total number of data points assigned to cluster Ci​Number of 
   </tr>
   <tr>
     <td><strong>Spectral Clustering<strong></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>64.5%</td>
+    <td>69.4%</td>
+    <td>63.5%</td>
+    <td>1.221</td>
   </tr>
   <tr>
     <td><strong>K-means<strong></td>
@@ -255,5 +338,37 @@ Precision(Ci​)=Total number of data points assigned to cluster Ci​Number of 
   </tr>
 </table>
 
-</body>
-</html>
+
+
+### Second Solution
+
+<table >
+<tr>
+    <td><strong>Metrics<strong></td>
+    <td><strong>Precision<strong></td>
+    <td><strong>Recall<strong></td>
+    <td><strong>F Score<strong></td>
+    <td><strong>Condititional Entropy<strong></td>
+  </tr>
+  <tr>
+  <td><strong>DBSCAN<strong></td>
+    <td>26.316%</td>
+    <td>20.888%</td>
+    <td>21.914%</td>
+    <td>3.144</td>
+  </tr>
+  <tr>
+    <td><strong>Spectral Clustering<strong></td>
+    <td>62.7%</td>
+    <td>67.2%</td>
+    <td>63%</td>
+    <td>1.2874</td>
+  </tr>
+  <tr>
+    <td><strong>K-means<strong></td>
+    <td>50.6%</td>
+    <td>88.7%</td>
+    <td>60.7</td>
+    <td>1.64</td>
+  </tr>
+</table>
