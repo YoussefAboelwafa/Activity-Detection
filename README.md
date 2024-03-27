@@ -195,19 +195,19 @@ how to choose best k?
 k = 8 have cluster 2 double the width of cluster 4 so it's bad choice<br>
 k = 19 is better because every cluster silhouette score is above average and clusters have similar width.
 
-## Evaluation
-We will evaluate our clustering by the Test Data but how? <br>
-Every Point in Test data is assigned to the cluster which it's centroid is the closest centroid to the point, Then we have clusters for Test Data.<br>
-**Note:** The centroids is obtained from the k-means training on Training set
 
-We will map each point in each cluster to its ground truth (y_test)
-```python
-def mapping(k,y_pred,y_actual):
-    clusters=[[] for _ in range(k)]
-    for i in range(len(y_pred)):
-        clusters[y_pred[i]-1].append((int) (y_actual[i]))
-    return clusters
-```
+
+<hr>
+
+## Spectral-Clustering
+
+<hr>
+
+### Spectral-Clustering Pseudocode:
+
+<hr>
+
+## Evaluation
 **Then we will use the following metrics to evaluate our cluserting:**
 ### 1. Precision
 In the context of k-means clustering, precision indicates how **pure** each cluster is, with higher precision values indicating that the clusters contain predominantly similar data points.<br>
@@ -257,13 +257,3 @@ Precision(Ci​)=Total number of data points assigned to cluster Ci​Number of 
 
 </body>
 </html>
-
-<hr>
-
-## Spectral-Clustering
-
-<hr>
-
-### Spectral-Clustering Pseudocode:
-
-<hr>
