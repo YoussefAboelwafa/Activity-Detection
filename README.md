@@ -291,15 +291,24 @@ def spectral_clustering_analysis(X_train, n_clusters=19):
 ## Evaluation Metrics
 **Then we will use the following metrics to evaluate our cluserting:**
 
+
 ### 1. Precision
 Precision indicates how **pure** each cluster is, with higher precision values indicating that the clusters contain predominantly similar data points.
 
-$$ \text{Precision}(C_i) = \frac{\text{Total number of data points assigned to cluster } C_i}{\text{Number of data points correctly assigned to cluster } C_i} $$
+$$ \text{Precision}(C_i) = \frac{\text{Number of data points in } C_i \text{ that belong to the most common class}}{\text{Total number of data points in } C_i} $$
+
+$$ \text{Weighted Average Precision} = \sum_{i=1}^{n} w_i \times \text{Precision}(C_i) $$
+
+where \(w_i\) is the proportion of data points in the dataset that belong to class \(i\), and \(n\) is the number of classes.
 
 ### 2. Recall
 Recall measures the ability of the clustering algorithm to find all the relevant instances.
 
-$$ \text{Recall}(C_i) = \frac{\text{Number of data points correctly assigned to cluster } C_i}{\text{Total number of data points in cluster } C_i} \$$
+$$ \text{Recall}(C_i) = \frac{\text{Number of data points of a certain class in } C_i}{\text{Total number of data points of that class in the dataset} } \$$
+
+$$ \text{Weighted Average Recall} = \sum_{i=1}^{n} w_i \times \text{Recall}(C_i) $$
+
+ where \(w_i\) is the proportion of data points in the dataset that belong to class \(i\), and \(n\) is the number of classes.
 
 ### 3. F-measure
 F-measure is the harmonic mean of precision and recall, providing a single metric for evaluating clustering performance.
@@ -312,6 +321,8 @@ Conditional Entropy measures the amount of information required to describe the 
 $$ H(Y|X) = - \sum_{x \in X} \sum_{y \in Y} p(x, y) \log \frac{p(x, y)}{p(x)} \$$
 
 Here, \( X \) represents the true labels, and \( Y \) represents the clustering result. \( p(x, y) \) is the joint probability distribution of \( X \) and \( Y \), and \( p(x) \) is the marginal probability distribution of \( X \).
+
+
 
 
 
