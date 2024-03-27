@@ -64,7 +64,7 @@ In each subfolder, there are 60 text files s01, s02, …, s60, one for each segm
 
 #### Difference between KMeans and DBSCAN:
 
-![0 FusOrF2huus2K400](https://github.com/YoussefAboelwafa/Activity-Detection/assets/96186143/f8dd3f1b-643c-4c36-b60b-0e92a89c5e00)
+![alt text](Plots/kmeansVSdbscan.png)
 
 <hr>
 
