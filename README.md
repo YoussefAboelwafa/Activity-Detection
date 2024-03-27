@@ -283,6 +283,7 @@ def spectral_clustering_analysis(X_train, n_clusters=19):
                     
     return labels
 ```
+<hr>
 
 ### Comaprison between the two methods of dataloading
 ![alt text](Plots/spectral_methods.png)
@@ -325,7 +326,7 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
 
 
 
-
+<hr>
 
 
 ## Comparision between DBSCAN, Spectral clustring, and Kmeans
@@ -411,3 +412,5 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
     <td>1.64</td>
   </tr>
 </table>
+        
+<hr>
