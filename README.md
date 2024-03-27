@@ -109,6 +109,20 @@ def get_DBSCAN(X, min_samples, eps)
 ```
 <hr>
 
+### Hyperparameter Tuning:
+
+- Hyperparameter Tuning For epsilon: <br>
+eps is the circle radius that will be used to determine the neighborhood of a point. It is important to choose the right value for eps, as it will affect the clustering results. A small value of eps will result in many points being labeled as noise, while a large value of eps will result in all points being labeled as part of the same cluster. 
+  
+![alt text](<Plots/eps.png>)
+
+- Hyperparameter Tuning For min_samples: <br>
+min_samples is the minimum number of points that must be within the eps radius of a point for it to be considered a core point. Increasing the value of min_samples will result in fewer core points and more noise points, while decreasing the value of min_samples will result in more core points and fewer noise points.
+
+![alt text](<Plots/min_samples.png>)
+
+<hr>
+
 ## K-means
  K-means is a popular unsupervised machine learning algorithm used for clustering data into groups, often referred to as "clusters". The algorithm aims to partition the data points into a predefined number of clusters (k), where each data point belongs to the cluster with the nearest mean (centroid). It works iteratively by initially randomly selecting k centroids, assigning each data point to the nearest centroid, recalculating the centroids based on the mean of the points assigned to each cluster, and repeating these steps until convergence or a predefined number of iterations. K-means seeks to minimize the within-cluster sum of squares.
 
@@ -164,9 +178,9 @@ When the number of clusters is increased, the WCSS typically decreases, as the c
 
 The Elbow Method suggests selecting the number of clusters at the "elbow" point of the plot, where the rate of decrease in the WCSS sharply decreases, forming an elbow-like curve. 
 
-![alt text](<KMeans Plots/elbow_mean.png>)
+![alt text](<Plots/elbow_mean.png>)
 
-![alt text](<KMeans Plots/elbow_flatten.png>)
+![alt text](<Plots/elbow_flatten.png>)
 
 - Sometimes the plot doesn't have an obivious elbow point as it is in the two plots above. <br>
 - Is there a better method?
@@ -189,8 +203,8 @@ how to choose best k?
 - For a particular K, all the clusters should have a Silhouette score greater than the average score of the data set represented by the red-dotted line.
 - There shouldn’t be wide fluctuations in the size of the clusters. The width of the clusters represents the number of data points. 
 
-![alt text](<KMeans Plots/sil_8.png>)
-![alt text](<KMeans Plots/silh_19.png>)
+![alt text](<Plots/sil_8.png>)
+![alt text](<Plots/silh_19.png>)
 
 k = 8 have cluster 2 double the width of cluster 4 so it's bad choice<br>
 k = 19 is better because every cluster silhouette score is above average and clusters have similar width.
@@ -271,7 +285,7 @@ def spectral_clustering_analysis(X_train, n_clusters=19):
 ```
 
 ### Comaprison between the two methods of dataloading
-![alt text](./comparision/spectral_methods.png)
+![alt text](Plots/spectral_methods.png)
 
 
 ## Evaluation Metrics
