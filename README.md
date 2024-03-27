@@ -187,7 +187,8 @@ b = average inter-cluster distance i.e the average distance between all clusters
 how to choose best k?
 <br>
 - For a particular K, all the clusters should have a Silhouette score greater than the average score of the data set represented by the red-dotted line.
-- There shouldn’t be wide fluctuations in the size of the clusters. The width of the clusters represents the number of data points.
+- There shouldn’t be wide fluctuations in the size of the clusters. The width of the clusters represents the number of data points. 
+
 ![alt text](<KMeans Plots/sil_8.png>)
 ![alt text](<KMeans Plots/silh_19.png>)
 
