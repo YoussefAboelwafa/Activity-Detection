@@ -1,4 +1,4 @@
-# Activity Detection
+# ***Activity Detection***
 Activity Detection using Unsupervised Learning Algorithms: **DBSCAN**, **K-Means** & **Spectral Clustering**
 
 ## Dataset
@@ -41,7 +41,7 @@ For each activity, the subfolders p1, p2, …, p8 contain data from each of the 
 
 In each subfolder, there are 60 text files s01, s02, …, s60, one for each segment.
 
-## DBSCAN
+## ***DBSCAN***
 
 - DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is an unsupervised machine learning algorithm that is used for clustering tasks. Unlike other clustering algorithms such as K-Means, DBSCAN does not require the user to specify the number of clusters in advance.
 
@@ -159,7 +159,7 @@ for sample in n_samples:
 
 <hr>
 
-## K-means
+## ***K-means***
  K-means is a popular unsupervised machine learning algorithm used for clustering data into groups, often referred to as "clusters". The algorithm aims to partition the data points into a predefined number of clusters (k), where each data point belongs to the cluster with the nearest mean (centroid). It works iteratively by initially randomly selecting k centroids, assigning each data point to the nearest centroid, recalculating the centroids based on the mean of the points assigned to each cluster, and repeating these steps until convergence or a predefined number of iterations. K-means seeks to minimize the within-cluster sum of squares.
 
 ### K-means Pseudocode
@@ -249,7 +249,7 @@ k = 19 is better because every cluster silhouette score is above average and clu
 
 <hr>
 
-## Spectral-Clustering
+## ***Spectral-Clustering***
 ### Overview
 Spectral Clustering is a powerful technique for clustering data points based on their similarity. It leverages the eigenvalues and eigenvectors of a similarity or affinity matrix to perform dimensionality reduction and then applies a standard clustering algorithm (e.g., K-means) to the reduced space.
 
