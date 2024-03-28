@@ -464,3 +464,8 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
 Remember, the effectiveness of different preprocessing techniques like PCA, feature scaling, and others can vary **depending on the specific dataset** and the model being used. It's always a good idea to experiment with different techniques and evaluate their performance on your specific task.
 
 <hr>
+
+## Contributors
+
+- <strong> [Mohamed Wael](https://github.com/mado2002)</strong> <br>
+- <strong> [Ahmed Samir](https://github.com/ahmedsamir459)</strong> <br>
