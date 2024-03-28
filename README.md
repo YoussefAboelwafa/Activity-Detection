@@ -449,3 +449,18 @@ Here, \( X \) represents the true labels, and \( Y \) represents the clustering 
 </table>
         
 <hr>
+
+### Conclusion Between the two solutions
+
+
+`method_1` might be achieving a higher F1 score than `method_2` due to the following reasons:
+
+1. **Data Reduction**: In `method_2`, using PCA (Principal Component Analysis) which is a dimensionality reduction technique. While PCA can help to reduce the complexity of the model and avoid overfitting, it can also lead to **loss of information** if the removed components contain important information for classification. This could lead to a lower F1 score.
+
+2. **Feature Representation**: In `method_1`, you are using the mean of the data values as features, while in `method_2`, you are flattening the data values. <br>**The mean could be capturing some important information that is lost when the data is flattened.**
+
+3. **Data Scaling**: Both methods use `StandardScaler` to standardize the features. It's generally a good practice, **especially for algorithms that calculate distances between data**. However, the effectiveness of scaling can depend on the specific dataset and model.
+
+Remember, the effectiveness of different preprocessing techniques like PCA, feature scaling, and others can vary **depending on the specific dataset** and the model being used. It's always a good idea to experiment with different techniques and evaluate their performance on your specific task.
+
+<hr>
